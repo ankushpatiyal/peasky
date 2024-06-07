@@ -1,4 +1,7 @@
 class DailyRecord < ApplicationRecord
+  #callbacks
+  after_create :update_users
+
   def set_avg_age
     self.male_avg_age = User.male_avg_age_today
     self.female_avg_age = User.female_avg_age_today
@@ -22,5 +25,9 @@ class DailyRecord < ApplicationRecord
       self.female_avg_age = avg_age
       self.female_count -= 1
     end
+  end
+
+  def update_users
+    User.where("DATE(created_at) = ?", Date.today).update(daily_record_id: self.id)
   end
 end

@@ -30,4 +30,13 @@ RSpec.describe DailyRecord, type: :model do
       expect(daily_record_obj.male_count).to eq(2)
     end
   end
+
+  describe '#update_users' do
+    it 'should update users if daily_record object is created' do
+      user = User.create
+      daily_record = DailyRecord.create
+
+      expect(user.reload.daily_record_id).to be(daily_record.id)
+    end
+  end
 end

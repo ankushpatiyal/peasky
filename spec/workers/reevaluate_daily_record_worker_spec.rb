@@ -5,7 +5,7 @@ RSpec.describe ReevaluateDailyRecordWorker do
 
   describe '.perform' do
     it 'should create update daily record' do
-      ReevaluateDailyRecordWorker.new.perform(DateTime.yesterday.to_date.to_s, User::MALE_KEY, 10)
+      ReevaluateDailyRecordWorker.new.perform(User::MALE_KEY, 10, daily_record.id)
       
       expect(daily_record.reload.male_avg_age).to eq(190)
     end

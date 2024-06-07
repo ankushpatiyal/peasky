@@ -26,6 +26,6 @@ class User < ApplicationRecord
   end
 
   def reevaluate_daily_record
-    ReevaluateDailyRecordWorker.perform_async(self.created_at.to_date.to_s, self.gender, self.age)
+    ReevaluateDailyRecordWorker.perform_async(self.gender, self.age, self.daily_record_id)
   end
 end
