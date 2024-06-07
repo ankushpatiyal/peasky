@@ -1,0 +1,45 @@
+{{ stylesheet_tag | raw }}
+
+<div class="main">
+  {{ headers | raw }}
+
+  <div class="center">
+    <h1>Daily Records ({{ paginate.total_entries }})</h1>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Male Count</th>
+        <th>Female Count</th>
+        <th>Male Avg Age</th>
+        <th>Female Avg Age</th>
+      </tr>
+      {% for record in daily_records -%}
+        <tr>
+          <td>{{ record['created_at'] }}</td>
+          <td>{{ record['male_count'] }}</td>
+          <td>{{ record['female_count'] }}</td>
+          <td>{{ record['male_avg_age'] }}</td>
+          <td>{{ record['female_avg_age'] }}</td>
+        </tr>
+      {%- endfor %}
+    </table>
+
+    <div class="pagination">
+      {% if paginate.previous_page %}
+        <a href="?page={{ paginate.previous_page }}">&laquo; Previous</a>
+      {% endif %}
+
+      {% for page in (1..paginate.total_pages) %}
+        {% if page == paginate.current_page %}
+          <strong>{{ page }}</strong>
+        {% else %}
+          <a href="?page={{ page }}">{{ page }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.next_page %}
+        <a href="?page={{ paginate.next_page }}">Next &raquo;</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
