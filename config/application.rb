@@ -18,5 +18,12 @@ module Peasky
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths += Dir[ Rails.root.join('lib', '**/') ]
+    config.active_job.queue_adapter = :sidekiq
+    config.cache_store = :redis_cache_store, {
+      url: ENV["REDIS_URL"],
+      pool_size: 8,
+      pool_timeout: 6
+    }
   end
 end
