@@ -5,20 +5,25 @@ application up and running.
 
 Things you may want to cover:
 
+* Install rvm
+
 * Ruby version
+# rvm install 3.3.1
 
-* System dependencies
+***
+  Install Postgres and
+  Just follow the steps given in Dockerfile to setup the whole system for now,
+  Still Working on docker-compose file
+***
 
-* Configuration
+* Initialize DB
+# rails db:setup
 
-* Database creation
 
-* Database initialization
+* Run Application
+# rails s
 
-* How to run the test suite
+* Run Sidekiq in different tab
+# sidekiq
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+And the system is ready to be used
