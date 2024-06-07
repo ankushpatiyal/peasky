@@ -27,3 +27,7 @@ Things you may want to cover:
 # sidekiq
 
 And the system is ready to be used
+
+
+Note: 
+You can see the jobs on this url: http://localhost:3000/sidekiq/cron
